@@ -32,6 +32,13 @@ public class kopiko {
 
     }
 
+    /**
+     * user will input their orders
+     * @param input the orders
+     * @param prices
+     * @param quantities how many order
+     * @return order
+     */
     //loop of input of the user
     public static double takeOrders(Scanner input, double[] prices, int[] quantities){
         double subtotal = 0;
@@ -73,6 +80,11 @@ public class kopiko {
         return subtotal;
     }
 
+    /**
+     * the available coffee
+     * @param choice available coffee
+     * @return coffee order
+     */
     //coffee that available
     public static String getCoffeeName(int choice){
         switch(choice){
@@ -85,6 +97,9 @@ public class kopiko {
         }
     }
 
+    /**
+     * Menu of the coffee
+     */
     //menu of the coffee
     public static void displayMenu(){
         System.out.println("--- Coffee Menu ---");
@@ -95,14 +110,25 @@ public class kopiko {
         System.out.println("0. Finish Order");
     }
 
+    /**
+     * calculating the VAT
+     */
     //VAT
     public static double calculateVat(double subtotal){
         return subtotal * .12;
     }
+
+    /**
+     * Calculating the grand total
+     */
     //GRAND TOTAL
     public static double calculateGrandTotal(double subtotal, double vat){
         return subtotal + vat;
     }
+
+    /**
+     * dispalying the receipt
+     */
     //DISPLAY OF THE RECEIPT
     public static void displayReceipt(double[] prices, int[] quantities, double subtotal, double vat, double grandTotal){
         System.out.println();
@@ -121,6 +147,10 @@ public class kopiko {
         System.out.println("------------------------");
 
     }
+
+    /**
+     *saving the receipt to file
+     */
     //SAVING FILE TO THE COFFEE.TXT
     public static void saveFileReceipt(double[] prices, int[] quantities, double subtotal, double vat, double grandTotal) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("CoffeeReceipt.txt"))) {
