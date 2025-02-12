@@ -1,8 +1,0 @@
----- Coffee Order Receipt -----
-2 x Espresso @ 50.00 each = 100.00
-1 x Latte @ 70.00 each = 70.00
-------------------------
-Subtotal: 170.00 PHP
-VAT (12%): 20.40 PHP
-Grand Total: 190.40 PHP
-------------------------
