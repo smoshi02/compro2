@@ -12,13 +12,13 @@ public class Order {
         handleOrder2(coffee2);
     }
 
-    // Create Coffee with predefined attributes
+
     private static Coffee createCoffee(String name, String type, double price, String roastLevel, String origin,
                                        String brewMethod, boolean isDecaf, int stock) {
         return new Coffee(name, type, "Medium", price, roastLevel, origin, isDecaf, stock, brewMethod);
     }
 
-    // Method to handle all the operations for coffee
+
     private static void handleOrder1(Coffee coffee) {
         coffee.addFlavor("Chocolate");
         coffee.addFlavor("Nutty");
@@ -38,7 +38,7 @@ public class Order {
         displayOrder(coffee);
     }
 
-    // Method to display coffee order details
+
     private static void displayOrder(Coffee coffee) {
         System.out.println(coffee.describe());
         System.out.println("Final Price: ₱" + coffee.getPrice());
