@@ -1,6 +1,6 @@
 package com.roi;
 
-public class Order {
+public class Main {
     public static void main(String[] args) {
         Coffee coffee1 = createCoffee("Espresso", "Arabica", 75.00, "Dark",
                 "Colombia", "Espresso Machine", false, 10);
