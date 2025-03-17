@@ -7,13 +7,13 @@ import java.util.Map;
 @Controller
 public class FormController {
 
-    // Endpoint to load the form page
+    // Load the form page
     @GetMapping("/forms/form")
     public String showForm() {
-        return "/forms/form";
+        return "forms/form";  // Refers to src/main/resources/templates/forms/form.html
     }
 
-    // Endpoint to handle form submission
+    // Handle form submission
     @PostMapping("/submit")
     @ResponseBody
     public String processForm(@RequestParam Map<String, String> formData) {
