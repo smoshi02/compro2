@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -27,6 +28,19 @@ public class CoffeeController {
     private final String[] sizes = {"Small", "Medium", "Large"};
     private final String[] roastLevels = {"Light", "Medium", "Dark"};
     private final String[] brewMethods = {"Drip", "French Press", "Espresso", "Filter"};
+
+    @GetMapping("/menu")
+    public String menu(Model model) {
+        List<Coffee> coffees = coffeeService.getCoffees();
+        model.addAttribute("coffees", coffees);
+        return "menu";
+    }
+
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        return "layout/main";
+    }
 
     /**
      * Displays the home page with a list of coffees.
@@ -43,6 +57,7 @@ public class CoffeeController {
         }
 
         model.addAttribute("coffees", coffeeService.searchCoffee(search));
+        model.addAttribute("activeMenu", "home");
         return "index";
     }
 
@@ -81,6 +96,7 @@ public class CoffeeController {
         model.addAttribute("sizes", sizes);
         model.addAttribute("roastLevels", roastLevels);
         model.addAttribute("brewMethods", brewMethods);
+        model.addAttribute("activeMenu", "add");
         return "add";
     }
 
@@ -170,11 +186,16 @@ public class CoffeeController {
      * @return Redirects to the home page or reloads the edit form on validation failure.
      */
     @PostMapping("/update")
-    public String update(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model, HttpSession session) {
+    public String update(@ModelAttribute("coffee") @Valid Coffee coffee,
+                         BindingResult bindingResult,
+                         @RequestParam(value = "flavorNotes", required = false) String[] flavorNotes,
+                         Model model, HttpSession session) {
+
         CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
-        if(currentUser == null){
+        if (currentUser == null) {
             return "redirect:/login";
         }
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("types", types);
             model.addAttribute("sizes", sizes);
@@ -182,6 +203,14 @@ public class CoffeeController {
             model.addAttribute("brewMethods", brewMethods);
             return "edit";
         }
+
+        // Manually set flavorNotes as comma-separated string
+        if (flavorNotes != null) {
+            coffee.setFlavorNotes(String.join(",", flavorNotes));
+        } else {
+            coffee.setFlavorNotes("");
+        }
+
         coffeeService.updateCoffee(coffee.getId(), coffee);
         return "redirect:/";
     }

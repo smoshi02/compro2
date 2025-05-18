@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="coffeeCardFragment(coffee)">
+    <img th:src="@{${coffee.image ?: '/images/default-coffee.jpg'}}" alt="Coffee Image" />
+    <h3 th:text="${coffee.name}">Coffee Name</h3>
+    <p th:text="${coffee.coffeeDescription}">Description</p>
+    <p><strong th:text="'$' + ${coffee.price}">Price</strong></p>
+</div>
+</body>
+</html>

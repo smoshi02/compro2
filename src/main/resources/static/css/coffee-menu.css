@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 1rem;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #4b3e2f;
+}
+
+.card-coffee {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.card-coffee:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.coffee-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: #5a3e1b;
+    margin: 0.5rem 0;
+}
+
+p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
