@@ -31,6 +31,7 @@ public class CoffeeController {
     @GetMapping("/catalog")
     public String menu(Model model) {
         model.addAttribute("coffees", coffeeService.getCoffees());
+        model.addAttribute("activeMenu", "catalog");
         return "catalog";
     }
 
