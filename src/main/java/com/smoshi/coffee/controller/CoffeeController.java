@@ -188,7 +188,8 @@ public class CoffeeController {
     public String update(@ModelAttribute("coffee") @Valid Coffee coffee,
                          BindingResult bindingResult,
                          @RequestParam(value = "flavorNotes", required = false) String[] flavorNotes,
-                         Model model, HttpSession session) {
+                         HttpSession session,
+                         Model model) {
 
         CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
         if (currentUser == null) {
@@ -203,14 +204,23 @@ public class CoffeeController {
             return "edit";
         }
 
-        // Manually set flavorNotes as comma-separated string
-        if (flavorNotes != null) {
-            coffee.setFlavorNotes(String.join(",", flavorNotes));
-        } else {
-            coffee.setFlavorNotes("");
+        Coffee existing = coffeeService.getCoffee(coffee.getId());
+        if (existing != null) {
+            // Preserve image if not updated
+            if (coffee.getCoffeePicture() == null || coffee.getCoffeePicture().isEmpty()) {
+                coffee.setCoffeePicture(existing.getCoffeePicture());
+            }
+
+            // Handle flavor notes
+            if (flavorNotes != null) {
+                coffee.setFlavorNotes(String.join(",", flavorNotes));
+            } else {
+                coffee.setFlavorNotes("");
+            }
+
+            coffeeService.updateCoffee(coffee.getId(), coffee);
         }
 
-        coffeeService.updateCoffee(coffee.getId(), coffee);
         return "redirect:/";
     }
 

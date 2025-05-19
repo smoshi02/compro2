@@ -11,6 +11,7 @@
     <div>
         <form th:action="@{/update}" th:object="${coffee}" method="post">
             <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{coffeePicture}" />
 
             <div>
                 <label for="name">Name:</label>
