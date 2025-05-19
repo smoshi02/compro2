@@ -46,7 +46,7 @@ public class CoffeeService {
 
         String lower = keyword.toLowerCase();
         return coffees.stream().filter(c ->
-                        c.getName().toLowerCase().contains(lower) ||
+                c.getName().toLowerCase().contains(lower) ||
                         c.getType().toLowerCase().contains(lower) ||
                         c.getSize().toLowerCase().contains(lower) ||
                         c.getRoastLevel().toLowerCase().contains(lower) ||
@@ -117,7 +117,6 @@ public class CoffeeService {
                         + c.getStock() + ","
                         + c.getBrewMethod() + ","
                         + c.getCoffeePicture() + ","
-                        + c.getImage() + ","
                         + String.join(";", c.getFlavorNotes()));
                 bw.newLine();
             }
@@ -140,7 +139,6 @@ public class CoffeeService {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-
                 if (data.length < 11) continue;
 
                 Coffee c = new Coffee();
@@ -156,16 +154,11 @@ public class CoffeeService {
                 c.setBrewMethod(data[9]);
                 c.setCoffeePicture(data[10]);
 
-                if (data.length > 11 && data[11] != null && !data[11].isEmpty()) {
-                    c.setImage(data[11]);
+                // Handle FlavorNotes
+                if (data.length >= 12 && !data[11].isEmpty()) {
+                    c.setFlavorNotes(data[11].trim());
                 } else {
-                    c.setImage("/images/default-coffee.jpg"); // Use your actual default image path here
-                }
-
-                if (data.length > 12 && !data[12].isEmpty()) {
-                    c.setFlavorNotes(data[12]);
-                } else {
-                    c.setFlavorNotes("");
+                    c.setFlavorNotes(""); // Empty string if no flavor notes
                 }
 
                 coffees.add(c);
@@ -174,5 +167,4 @@ public class CoffeeService {
             System.out.println("Uh-oh! Error reading: " + e.getMessage());
         }
     }
-
 }

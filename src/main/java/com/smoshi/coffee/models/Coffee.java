@@ -37,14 +37,12 @@ public class Coffee {
     private String brewMethod;
 
     private String coffeePicture;
-    private String coffeeDescription;
-    private String image;
+
 
     public Coffee() {}
 
     public Coffee(int id, String name, String type, String size, double price, String roastLevel,
-                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod, String coffeePicture, String image,
-                  String coffeeDescription) {
+                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod, String coffeePicture) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -57,8 +55,6 @@ public class Coffee {
         this.flavorNotes = flavorNotes;
         this.brewMethod = brewMethod;
         this.coffeePicture = coffeePicture;
-        this.image = image;
-        this.coffeeDescription = coffeeDescription;
     }
 
     public int getId() {
@@ -157,19 +153,6 @@ public class Coffee {
         this.coffeePicture = profilePicture;
     }
 
-    public String getImage() {
-        return image;
-    }
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getCoffeeDescription() {
-        return coffeeDescription;
-    }
-    public void setCoffeeDescription(String coffeeDescription) {
-        this.coffeeDescription = coffeeDescription;
-    }
 }
 
 

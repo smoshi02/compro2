@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -29,11 +28,10 @@ public class CoffeeController {
     private final String[] roastLevels = {"Light", "Medium", "Dark"};
     private final String[] brewMethods = {"Drip", "French Press", "Espresso", "Filter"};
 
-    @GetMapping("/menu")
+    @GetMapping("/catalog")
     public String menu(Model model) {
-        List<Coffee> coffees = coffeeService.getCoffees();
-        model.addAttribute("coffees", coffees);
-        return "menu";
+        model.addAttribute("coffees", coffeeService.getCoffees());
+        return "catalog";
     }
 
 
