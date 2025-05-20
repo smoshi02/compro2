@@ -84,7 +84,7 @@ aside {
 }
 
 .sidebar .menu li {
-    color: var(--sidebar-text);
+    color: var(--text-color);
     padding: 11px 16px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -96,16 +96,15 @@ aside {
 
 .sidebar .menu li svg {
     margin-right: 14px;
-    flex-shrink: 0;
     width: 24px;
     height: 24px;
-    fill: var(--sidebar-text);
+    fill: var(--text-color);
     transition: fill 0.3s ease;
 }
 
 .sidebar .menu li:hover {
     background-color: var(--sidebar-hover);
-    color: var(--sidebar-text);
+    color: var(--text-color);
 }
 
 .sidebar .menu li:hover svg {
@@ -123,7 +122,7 @@ aside {
 
 .sidebar .menu li span:last-child {
     margin-left: auto;
-    color: var(--sidebar-text);   /* Hide by default */
+    color: var(--text-color);   /* Hide by default */
     user-select: none;
     transition: color 0.3s ease;
 }
@@ -173,7 +172,6 @@ main {
     flex-direction: column;
     height: 100vh;
     overflow-y: auto;
-
     min-width: 0; /* IMPORTANT: prevent main from overflowing grid */
 }
 
@@ -182,7 +180,6 @@ main {
     padding: 0 5vw;
     width: 100%;
     margin: 0 auto;
-
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -198,16 +195,16 @@ h1 {
 }
 
 /* Responsive: Collapse Sidebar */
-@media(max-width: 48em){
-    body{
-        grid-template-columns: 102px 1fr;
+@media (max-width: 48em) {
+    body {
+        grid-template-columns: 102px 1fr; /* Adjust sidebar width */
     }
 
     .brand span, .menu > ul > li > span, .user-profile > div{
         display: none;
     }
 
-    svg{
+    svg {
         margin-right: 0;
         width: 24px;
         height: 24px;
@@ -215,4 +212,5 @@ h1 {
         flex-grow: 1;
         overflow: visible;
     }
+
 }
